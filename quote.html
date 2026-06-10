@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Request a Free Quote | JR Tree Works LLC</title>
+    <meta
+      name="description"
+      content="Request a free quote from JR Tree Works LLC for tree cutting, stump removal, emergency tree service, or brush removal in Northeastern Ohio."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="top-strip" href="tel:14406356666">
+      <span>NEED HELP SOON?</span>
+      <strong>Call 440-635-6666</strong>
+    </a>
+
+    <header class="site-header quote-header" aria-label="Site header">
+      <a class="brand" href="index.html" aria-label="JR Tree Works LLC home">
+        <span class="brand-mark" aria-hidden="true">
+          <span>JR</span>
+        </span>
+        <span class="brand-text">
+          <strong>JR Tree Works LLC</strong>
+          <small>Middlefield, Ohio</small>
+        </span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#about">About</a>
+        <a href="quote.html" aria-current="page">Free Quote</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="call-button" href="tel:14406356666" aria-label="Call JR Tree Works LLC at 440 635 6666">
+        <span aria-hidden="true">Call</span>
+        <span>440-635-6666</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="quote-hero" aria-labelledby="quote-title">
+        <div class="quote-intro">
+          <p class="eyebrow">Free estimates</p>
+          <h1 id="quote-title">Request a free tree service quote.</h1>
+          <p>Tell us what kind of tree work you need, or call directly for faster help.</p>
+          <a class="secondary-action" href="tel:14406356666">Call 440-635-6666</a>
+        </div>
+
+        <form class="quote-form" id="quote-form">
+          <label>
+            Name
+            <input name="name" type="text" autocomplete="name" placeholder="Your name">
+          </label>
+          <label>
+            Phone
+            <input name="phone" type="tel" autocomplete="tel" placeholder="Best phone number">
+          </label>
+          <label>
+            Property location
+            <input name="location" type="text" autocomplete="street-address" placeholder="City or address">
+          </label>
+          <label>
+            Service needed
+            <select name="service">
+              <option>Tree cutting services</option>
+              <option>Stump removal</option>
+              <option>Emergency tree service</option>
+              <option>Brush removal</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label class="form-wide">
+            Project details
+            <textarea name="details" rows="5" placeholder="Tell us about the tree, stump, storm damage, brush, access, or timing."></textarea>
+          </label>
+          <button class="primary-action form-wide" type="submit">Prepare Quote Request</button>
+          <p class="form-note form-wide" id="form-note">
+            Your quote details will open in a text message. Nothing is sent until you choose to send it.
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 JR Tree Works LLC. Middlefield, Ohio.</p>
+      <p>For faster help, call <a href="tel:14406356666">440-635-6666</a>.</p>
+    </footer>
+
+    <script>
+      const form = document.querySelector("#quote-form");
+      const note = document.querySelector("#form-note");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const data = new FormData(form);
+        const message = [
+          "Free quote request for JR Tree Works LLC",
+          `Name: ${data.get("name") || ""}`,
+          `Phone: ${data.get("phone") || ""}`,
+          `Location: ${data.get("location") || ""}`,
+          `Service: ${data.get("service") || ""}`,
+          `Details: ${data.get("details") || ""}`,
+        ].join("\n");
+
+        note.textContent = "Opening your text app with the quote request filled in.";
+        window.location.href = `sms:+14406356666?&body=${encodeURIComponent(message)}`;
+      });
+    </script>
+  </body>
+</html>
